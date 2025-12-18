@@ -13,6 +13,7 @@ public class CollegeBasketballTeam {
     private String name;
     private boolean tournamentTeam;
     private int[] pointsByRound;
+    private String pickedByName;
 
     public CollegeBasketballTeam(String id, String name) {
         this.id = id;

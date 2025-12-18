@@ -43,8 +43,8 @@ public class TeamService {
         List<CollegeBasketballTeam> teams = new ArrayList<>();
         for (JsonNode node : teamsArray) {
             JsonNode teamObj = node.path("team");
-            String id = teamObj.path("id").asText();
-            String displayName = teamObj.path("displayName").asText();
+            String id = teamObj.path("id").asString();
+            String displayName = teamObj.path("displayName").asString();
 
             teams.add(new CollegeBasketballTeam(id, displayName));
         }
