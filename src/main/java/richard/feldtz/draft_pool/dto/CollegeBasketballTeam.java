@@ -4,19 +4,20 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Arrays;
-import java.util.List;
 
 @Getter
 @Setter
-public class Participant {
+public class CollegeBasketballTeam {
 
+    private String id;
     private String name;
-    private List<CollegeBasketballTeam> tournamentTeams;
+    private boolean tournamentTeam;
     private int[] pointsByRound;
 
-    public Participant(String name, List<CollegeBasketballTeam> collegeBasketballTeams) {
+    public CollegeBasketballTeam(String id, String name) {
+        this.id = id;
         this.name = name;
-        this.tournamentTeams = collegeBasketballTeams;
+        this.tournamentTeam = false;
         pointsByRound = new int[6];
     }
 
