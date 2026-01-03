@@ -20,6 +20,13 @@ public class CollegeBasketballTeamRepository {
         return teams.stream().map(CollegeBasketballTeam::getName).collect(Collectors.toList());
     }
 
+    public List<String> findAllTournamentTeams() {
+        return teams.stream()
+                .filter(CollegeBasketballTeam::isTournamentTeam)
+                .map(team -> team.getId() + ": " + team.getName() + ", selected by: " + team.getPickedByName())
+                .collect(Collectors.toList());
+    }
+
     public List<String> getTeamIdsAndNames() {
         return teams.stream().map(team -> team.getId() + ": " + team.getName())
                 .collect(Collectors.toList());

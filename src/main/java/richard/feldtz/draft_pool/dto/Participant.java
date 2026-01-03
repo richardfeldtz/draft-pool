@@ -3,6 +3,7 @@ package richard.feldtz.draft_pool.dto;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -14,10 +15,20 @@ public class Participant {
     private List<CollegeBasketballTeam> tournamentTeams;
     private int[] pointsByRound;
 
-    public Participant(String name, List<CollegeBasketballTeam> collegeBasketballTeams) {
+    public Participant(String name) {
         this.name = name;
-        this.tournamentTeams = collegeBasketballTeams;
+        this.tournamentTeams = new ArrayList<>();
         pointsByRound = new int[6];
+    }
+
+    public void calculatePointsByRound() {
+        Arrays.fill(pointsByRound, 0);
+
+        for (CollegeBasketballTeam team : tournamentTeams) {
+            for (int i = 0; i < pointsByRound.length; i++) {
+                pointsByRound[i] += team.getPointsByRound()[i];
+            }
+        }
     }
 
     public int calculateTotalPoints() {

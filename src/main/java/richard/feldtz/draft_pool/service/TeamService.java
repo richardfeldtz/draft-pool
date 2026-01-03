@@ -1,5 +1,6 @@
 package richard.feldtz.draft_pool.service;
 
+import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -23,6 +24,10 @@ public class TeamService {
     public TeamService(CollegeBasketballTeamRepository collegeBasketballTeamRepository, RestTemplate restTemplate) {
         this.collegeBasketballTeamRepository = collegeBasketballTeamRepository;
         this.restTemplate = restTemplate;
+    }
+
+    @PostConstruct
+    public void init() {
         fetchAndStoreTeams();
     }
 

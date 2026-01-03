@@ -6,7 +6,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import richard.feldtz.draft_pool.dto.CollegeBasketballTeam;
 import richard.feldtz.draft_pool.dto.FinalGame;
+import richard.feldtz.draft_pool.dto.Participant;
 import richard.feldtz.draft_pool.repo.CollegeBasketballTeamRepository;
+import richard.feldtz.draft_pool.repo.ParticipantRepository;
 import richard.feldtz.draft_pool.service.ScoreboardService;
 
 import java.util.List;
@@ -18,15 +20,23 @@ public class TestController {
 
     private final ScoreboardService scoreboardService;
     private final CollegeBasketballTeamRepository teamRepository;
+    private final ParticipantRepository participantRepository;
 
+    // Games Endpoint Testing
     @GetMapping("/games/final")
     public List<FinalGame> finalGames() {
         return scoreboardService.getFinalGames();
     }
 
+    // Teams Endpoint Testing
     @GetMapping("/teams")
     public List<String> getTeams() {
         return teamRepository.findAll();
+    }
+
+    @GetMapping("/teams/tournament")
+    public List<String> getTournamentTeams() {
+        return teamRepository.findAllTournamentTeams();
     }
 
     @GetMapping("/teams/ids")
@@ -37,5 +47,11 @@ public class TestController {
     @GetMapping("/teams/{id}")
     public Optional<CollegeBasketballTeam> getTeamById(@PathVariable String id) {
         return teamRepository.getTeamById(id);
+    }
+
+    // Participants Endpoint Testing
+    @GetMapping("/participants")
+    public List<Participant> getParticipants() {
+        return participantRepository.findAll();
     }
 }

@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: draft-pool
+
+logging:
+  level:
+    org.springframework.web.servlet.DispatcherServlet: DEBUG

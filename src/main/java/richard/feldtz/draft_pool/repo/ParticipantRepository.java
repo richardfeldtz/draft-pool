@@ -19,9 +19,12 @@ public class ParticipantRepository {
         return new ArrayList<>(participants);
     }
 
-//    @PostConstruct
-//    public void init() {
-//          TODO: implement
-//    }
-
+    @PostConstruct
+    public void init() {
+          Participant richard = new Participant("Richard");
+          Participant dan = new Participant("Dan");
+          Participant alex = new Participant("Alex");
+          Participant matt = new Participant("Matt");
+          saveAll(List.of(richard, dan, alex, matt));
+    }
 }
