@@ -52,6 +52,6 @@ public class TestController {
     // Participants Endpoint Testing
     @GetMapping("/participants")
     public List<Participant> getParticipants() {
-        return participantRepository.findAll();
+        return participantRepository.getParticipants();
     }
 }

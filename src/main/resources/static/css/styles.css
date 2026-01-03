@@ -225,3 +225,33 @@ ul {
     height: 28px;
     line-height: 28px;
 }
+/* =====================
+   Legend
+===================== */
+
+.legend {
+    width: 1200px;
+    margin: 0 auto 20px auto; /* center + spacing */
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+}
+
+@media (min-width: 1400px) {
+    .legend {
+        width: 1400px;
+    }
+}
+
+.legend span {
+    padding: 6px 14px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border-radius: 4px;
+    color: white;
+    box-shadow: 1px 1px 6px rgba(0,0,0,0.35);
+    background-color: var(--participant-color, #777);
+}
+

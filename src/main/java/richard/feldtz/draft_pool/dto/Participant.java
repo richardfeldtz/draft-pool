@@ -12,11 +12,13 @@ import java.util.List;
 public class Participant {
 
     private String name;
+    private String color;
     private List<CollegeBasketballTeam> tournamentTeams;
     private int[] pointsByRound;
 
-    public Participant(String name) {
+    public Participant(String name, String color) {
         this.name = name;
+        this.color = color;
         this.tournamentTeams = new ArrayList<>();
         pointsByRound = new int[6];
     }

@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="/css/styles.css">
+<link rel="stylesheet" href="/css/styles.css" xmlns:th="http://www.w3.org/1999/xhtml">
 
 <header>
     <ol>
@@ -13,6 +13,12 @@
         <li>Round 1 <br/><span>Mar 15/16</span></li>
     </ol>
 </header>
+<div class="legend">
+    <span th:each="participant : ${participants}"
+          th:text="${participant.name}"
+          th:style="'background-color:' + ${participant.color}">
+    </span>
+</div>
 <div class="bracket">
     <div class="region region-1">
         <!-- Region 1 Round 1-->
@@ -297,6 +303,11 @@
         </ul>
 
         <ul class="matchup matchup-32">
+<!--        &lt;!&ndash;TODO need to fix this&ndash;&gt;-->
+<!--            <li class="team team-top"-->
+<!--                th:text="${team.name}"-->
+<!--                th:style="${teamColorMap[team.id]} != null ? 'background-color:' + ${teamColorMap[team.id]} + '; color:white;' : ''">-->
+<!--            2 Duke</li>-->
             <li class="team team-top winner">2 Duke</li>
             <li class="team team-bottom">15 Iona</li>
         </ul>

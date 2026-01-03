@@ -23,7 +23,7 @@ public class CollegeBasketballTeamRepository {
     public List<String> findAllTournamentTeams() {
         return teams.stream()
                 .filter(CollegeBasketballTeam::isTournamentTeam)
-                .map(team -> team.getId() + ": " + team.getName() + ", selected by: " + team.getPickedByName())
+                .map(team -> team.getId() + ": " + team.getName())
                 .collect(Collectors.toList());
     }
 

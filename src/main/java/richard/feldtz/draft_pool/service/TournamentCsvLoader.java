@@ -24,7 +24,7 @@ public class TournamentCsvLoader {
     }
 
     public void load(InputStream csvInputStream) {
-        List<Participant> participants = participantRepository.findAll();
+        List<Participant> participants = participantRepository.getParticipants();
 
         try (BufferedReader reader =
                      new BufferedReader(new InputStreamReader(csvInputStream))) {
@@ -51,7 +51,6 @@ public class TournamentCsvLoader {
 
                 // Link everything
                 team.setTournamentTeam(true);
-                team.setPickedByName(participant.getName());
                 participant.getTournamentTeams().add(team);
             }
 
