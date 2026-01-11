@@ -13,7 +13,7 @@ public class Participant {
 
     private String name;
     private String color;
-    private List<CollegeBasketballTeam> tournamentTeams;
+    private List<TournamentTeam> tournamentTeams;
     private int[] pointsByRound;
 
     public Participant(String name, String color) {
@@ -26,7 +26,7 @@ public class Participant {
     public void calculatePointsByRound() {
         Arrays.fill(pointsByRound, 0);
 
-        for (CollegeBasketballTeam team : tournamentTeams) {
+        for (TournamentTeam team : tournamentTeams) {
             for (int i = 0; i < pointsByRound.length; i++) {
                 pointsByRound[i] += team.getPointsByRound()[i];
             }

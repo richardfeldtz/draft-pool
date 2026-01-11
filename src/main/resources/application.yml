@@ -1,6 +1,9 @@
 spring:
   application:
     name: draft-pool
+  jackson:
+    serialization:
+      indent-output: true
 
 logging:
   level:

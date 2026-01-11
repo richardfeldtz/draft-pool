@@ -1,5 +1,7 @@
 package richard.feldtz.draft_pool.service;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import richard.feldtz.draft_pool.dto.ScoreboardResponse;
@@ -9,15 +11,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@AllArgsConstructor
+@Getter
 public class ScoreboardService {
     private static final String URL =
             "http://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/scoreboard?groups=50&limit=500";
 
     private final RestTemplate restTemplate;
-
-    public ScoreboardService(RestTemplate restTemplate) {
-        this.restTemplate = restTemplate;
-    }
 
     public List<FinalGame> getFinalGames() {
 

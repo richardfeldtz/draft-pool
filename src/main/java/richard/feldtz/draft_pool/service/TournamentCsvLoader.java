@@ -1,27 +1,26 @@
 package richard.feldtz.draft_pool.service;
 
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import richard.feldtz.draft_pool.dto.CollegeBasketballTeam;
 import richard.feldtz.draft_pool.dto.Participant;
+import richard.feldtz.draft_pool.dto.TournamentTeam;
 import richard.feldtz.draft_pool.repo.CollegeBasketballTeamRepository;
 import richard.feldtz.draft_pool.repo.ParticipantRepository;
+import richard.feldtz.draft_pool.repo.TournamentTeamRepository;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 import java.util.List;
 
 @Service
+@AllArgsConstructor
 public class TournamentCsvLoader {
 
     private final CollegeBasketballTeamRepository teamRepository;
+    private final TournamentTeamRepository tournamentTeamRepository;
     private final ParticipantRepository participantRepository;
-
-    public TournamentCsvLoader(CollegeBasketballTeamRepository teamRepository,
-                               ParticipantRepository participantRepository) {
-        this.teamRepository = teamRepository;
-        this.participantRepository = participantRepository;
-    }
 
     public void load(InputStream csvInputStream) {
         List<Participant> participants = participantRepository.getParticipants();
@@ -36,12 +35,15 @@ public class TournamentCsvLoader {
             while ((line = reader.readLine()) != null) {
                 String[] cols = line.split(",");
 
-                String teamId = cols[0].trim();
-                String participantName = cols[2].trim();
+                String region = cols[0].trim();
+                String seed = cols[1].trim();
+                String teamId = cols[2].trim();
+                String teamName = cols[3].trim();
+                String participantName = cols[4].trim();
 
-                CollegeBasketballTeam team = teamRepository.getTeamById(teamId)
-                        .orElseThrow(() ->
-                                new IllegalArgumentException("Team not found: " + teamId));
+                if (teamRepository.getTeamById(teamId).isEmpty()) {
+                    throw new IllegalArgumentException("Team not found: " + teamId + " team: " + teamName);
+                }
 
                 Participant participant = participants.stream()
                         .filter(p -> p.getName().equalsIgnoreCase(participantName))
@@ -50,8 +52,12 @@ public class TournamentCsvLoader {
                                 new IllegalArgumentException("Participant not found: " + participantName));
 
                 // Link everything
-                team.setTournamentTeam(true);
-                participant.getTournamentTeams().add(team);
+                TournamentTeam tournamentTeam = new TournamentTeam(region, Integer.parseInt(seed));
+                tournamentTeam.setId(teamId);
+                tournamentTeam.setName(teamName);
+                participant.getTournamentTeams().add(tournamentTeam);
+
+                tournamentTeamRepository.save(tournamentTeam);
             }
 
         } catch (Exception e) {

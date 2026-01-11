@@ -1,5 +1,5 @@
-teamId,teamName,participantName
-150,Duke,Richard
-2305,Kansas,Dan
-96,Kentucky,Alex
-2250,Gonzaga,Matt
+region,seed,teamId,teamName,participantName
+West,1,150,Duke,Richard
+Midwest,1,2305,Kansas,Dan
+East,1,96,Kentucky,Alex
+South,1,2250,Gonzaga,Matt

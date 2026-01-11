@@ -7,8 +7,10 @@ import org.springframework.web.bind.annotation.RestController;
 import richard.feldtz.draft_pool.dto.CollegeBasketballTeam;
 import richard.feldtz.draft_pool.dto.FinalGame;
 import richard.feldtz.draft_pool.dto.Participant;
+import richard.feldtz.draft_pool.dto.TournamentTeam;
 import richard.feldtz.draft_pool.repo.CollegeBasketballTeamRepository;
 import richard.feldtz.draft_pool.repo.ParticipantRepository;
+import richard.feldtz.draft_pool.repo.TournamentTeamRepository;
 import richard.feldtz.draft_pool.service.ScoreboardService;
 
 import java.util.List;
@@ -20,6 +22,7 @@ public class TestController {
 
     private final ScoreboardService scoreboardService;
     private final CollegeBasketballTeamRepository teamRepository;
+    private final TournamentTeamRepository tournamentTeamRepository;
     private final ParticipantRepository participantRepository;
 
     // Games Endpoint Testing
@@ -35,8 +38,8 @@ public class TestController {
     }
 
     @GetMapping("/teams/tournament")
-    public List<String> getTournamentTeams() {
-        return teamRepository.findAllTournamentTeams();
+    public List<TournamentTeam> getTournamentTeams() {
+        return tournamentTeamRepository.getTournamentTeams();
     }
 
     @GetMapping("/teams/ids")
